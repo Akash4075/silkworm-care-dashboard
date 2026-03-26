@@ -1,73 +1,38 @@
-# Welcome to your Lovable project
+# Silkworm Farm IoT Dashboard & Mobile App
 
-## Project info
+A sophisticated IoT monitoring and control system designed for automated silkworm farming. This project bridges a physical ESP32-based sensor array with a high-performance React dashboard and a native Android application.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## 🚀 Key Features
 
-## How can I edit this code?
+- **Real-time IoT Monitoring**: Live telemetry for Temperature, Humidity, Light (LDR), Gas (MQ), and Fire sensors via ESP32.
+- **Actuator Control**: Remote manual control for Feeding Motors and Cooling Fans directly from the app.
+- **Critical Alerts**: Intelligent notification system with specialized "Tray Status" detection for silkworm health monitoring.
+- **Cross-Platform**: Built as a responsive web dashboard and converted into a native Android APK using Capacitor.
+- **Demo Mode**: Built-in "Showing Purpose" features that allow for full functionality demonstration even without physical hardware connected.
 
-There are several ways of editing your application.
+## 🛠 Tech Stack
 
-**Use Lovable**
+- **Frontend**: React 18, Vite, TypeScript, Tailwind CSS, shadcn/ui.
+- **Mobile**: Capacitor 5 (Android Native Bridge).
+- **Firmware**: C++ (ESP32), WebServer, DHT11, I2C LiquidCrystal.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## 📱 Mobile App (Android)
 
-Changes made via Lovable will be committed automatically to this repo.
+The project includes a fully configured Android source directory (`/android`) with:
+- **Cleartext HTTP Support**: Configured to work with local IP addresses on modern Android versions (Android 10+).
+- **Network Security Protocols**: Customized `network_security_config.xml` to allow seamless local IoT communication.
+- **Native Performance**: Leverages Capacitor for high-frame-rate UI and native device integration.
 
-**Use your preferred IDE**
+## 🔌 ESP32 Integration
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+The dashboard communicates via standard **REST API Endpoints** hosted on the ESP32:
+- `GET /data`: Fetches real-time sensor JSON.
+- `GET /motor/on` & `GET /motor/off`: Controls the feeding mechanism.
+- `GET /fan/on` & `GET /fan/off`: Manages the cooling system.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 👨‍💻 Installation
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+1. Clone the repository.
+2. Run `npm install` to install dependencies.
+3. Run `npm run dev` to start the dashboard locally.
+4. To build the APK, open the `/android` folder in Android Studio and select **Build -> Build APK**.

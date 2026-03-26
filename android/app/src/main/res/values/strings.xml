@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Silkworm Farm</string>
+    <string name="title_activity_main">Silkworm Farm</string>
+    <string name="package_name">com.silkworm.farm</string>
+    <string name="custom_url_scheme">com.silkworm.farm</string>
+</resources>

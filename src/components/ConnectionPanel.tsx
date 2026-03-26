@@ -1,4 +1,4 @@
-import { Wifi, WifiOff, Loader2 } from "lucide-react";
+import { Wifi, WifiOff, Loader2, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import type { ConnectionStatus } from "@/hooks/useESP32";
@@ -10,6 +10,7 @@ interface ConnectionPanelProps {
   onIpChange: (ip: string) => void;
   onConnect: () => void;
   onDisconnect: () => void;
+  onStartSimulation: () => void;
 }
 
 export function ConnectionPanel({
@@ -19,6 +20,7 @@ export function ConnectionPanel({
   onIpChange,
   onConnect,
   onDisconnect,
+  onStartSimulation,
 }: ConnectionPanelProps) {
   const isConnecting = status === "connecting";
   const isConnected = status === "connected";
@@ -70,7 +72,22 @@ export function ConnectionPanel({
           Connecting to Silkworm Device...
         </p>
       )}
-      {error && (
+      
+      {status === "error" && (
+        <div className="mt-4 p-3 bg-destructive/10 border border-destructive/20 rounded-lg animate-in fade-in slide-in-from-top-2">
+          <p className="text-xs text-destructive font-semibold mb-2 flex items-center gap-1">
+            <AlertCircle className="h-3 w-3" />
+            Connection Hint:
+          </p>
+          <ul className="text-[10px] text-destructive/80 space-y-1 ml-4 list-disc">
+            <li>Is your laptop on the <b>SAME Wi-Fi</b> as the ESP32?</li>
+            <li>Check Arduino Serial Monitor for the <b>Correct IP</b>.</li>
+            <li>If your laptop IP starts with <b>10.102...</b>, the ESP32 IP must also start with <b>10.102...</b></li>
+          </ul>
+        </div>
+      )}
+
+      {error && !isConnecting && (
         <p className="text-sm text-destructive">{error}</p>
       )}
     </div>

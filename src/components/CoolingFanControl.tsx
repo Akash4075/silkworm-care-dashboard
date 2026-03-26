@@ -1,26 +1,26 @@
-import { Power, PowerOff } from "lucide-react";
+import { Wind, PowerOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-interface MotorControlProps {
-  motorState: number | boolean | null;
+interface CoolingFanControlProps {
+  fanState: number | boolean | null;
   disabled: boolean;
   onStart: () => void;
   onStop: () => void;
 }
 
-export function MotorControl({
-  motorState,
+export function CoolingFanControl({
+  fanState,
   disabled,
   onStart,
   onStop,
-}: MotorControlProps) {
-  const isOn = !!motorState;
+}: CoolingFanControlProps) {
+  const isOn = !!fanState;
 
   return (
     <div className="sensor-card space-y-4">
       <div className="flex items-center justify-between">
         <h2 className="font-heading text-lg font-semibold text-card-foreground">
-          Food Motor Control
+          Cooling Fan Control
         </h2>
         <div className="flex items-center gap-2">
           <span
@@ -44,8 +44,8 @@ export function MotorControl({
           onClick={onStart}
           disabled={disabled || isOn}
         >
-          <Power className="mr-2 h-4 w-4" />
-          Start Motor
+          <Wind className="mr-2 h-4 w-4" />
+          Start Fan
         </Button>
         <Button
           variant="outline"
@@ -54,7 +54,7 @@ export function MotorControl({
           disabled={disabled || !isOn}
         >
           <PowerOff className="mr-2 h-4 w-4" />
-          Stop Motor
+          Stop Fan
         </Button>
       </div>
     </div>
